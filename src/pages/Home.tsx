@@ -1,8 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Activity, Heart, Shield, Clock, Star, CheckCircle2, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import digestiveBg from '../assets/digestive-bg.png';
-import drAmeta from '../assets/dr-ameta.png';
 
 export default function Home() {
   const fadeIn = {
@@ -19,7 +17,7 @@ export default function Home() {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${digestiveBg})` }}
+          style={{ backgroundImage: "url('./hero.png')" }}
         ></div>
         {/* Gradient Overlay - Adjusted for better background visibility while keeping text readable */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent"></div>
@@ -50,7 +48,7 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-teal-200 rounded-full blur-3xl opacity-50 transform translate-x-10 translate-y-10"></div>
               <img 
-                src={drAmeta} 
+                src="./doctor.png" 
                 alt="Dr. Mayank Ameta" 
                 className="relative z-10 rounded-2xl shadow-2xl object-cover w-full max-w-md mx-auto aspect-[4/5] object-top border-4 border-white bg-white"
               />
