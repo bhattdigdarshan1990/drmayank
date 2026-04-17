@@ -1,13 +1,33 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, MapPin, MessageCircle, Stethoscope } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, MessageCircle, Stethoscope, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
   const location = useLocation();
   const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,12 +35,6 @@ export default function Layout() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    // Force light mode
-    document.documentElement.classList.remove('dark');
-    localStorage.removeItem('theme');
   }, []);
 
   useEffect(() => {
@@ -45,7 +59,7 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans transition-all duration-700 ease-in-out bg-white text-gray-800">
+    <div className="min-h-screen flex flex-col font-sans transition-all duration-700 ease-in-out bg-white dark:bg-[#070b14] text-gray-800 dark:text-gray-100">
       <div className="fixed w-full z-50 top-0 left-0 flex flex-col transition-all duration-300">
         {/* Top Bar */}
         <div className={`py-2 px-4 hidden md:block transition-colors duration-700 ${isScrolled ? 'bg-sky-700 text-white' : (isHome ? 'bg-sky-900/30 backdrop-blur-sm text-white' : 'bg-sky-600 text-white')}`}>
@@ -93,18 +107,33 @@ export default function Layout() {
                 key={link.name}
                 to={link.path}
                 className={`font-medium transition-all duration-700 hover:text-sky-600 ${
-                  location.pathname === link.path ? 'text-sky-600 border-b-2 border-sky-600' : 'text-gray-600'
+                  location.pathname === link.path ? 'text-sky-600 border-b-2 border-sky-600' : 'text-gray-600 dark:text-gray-300'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
+            
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </nav>
 
           {/* Mobile Actions */}
           <div className="md:hidden flex items-center space-x-4">
             <button
-              className="text-gray-600 hover:text-sky-600 transition-colors duration-700"
+              onClick={toggleDarkMode}
+              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              className="text-gray-600 dark:text-gray-300 hover:text-sky-600 transition-colors duration-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -173,8 +202,8 @@ export default function Layout() {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="hover:text-sky-400 transition-colors flex items-center">
-                    <span className="mr-2">›</span> {link.name}
+                  <Link to={link.path} className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center">
+                    <span className="mr-2 text-sky-500 font-bold">›</span> {link.name}
                   </Link>
                 </li>
               ))}
@@ -184,11 +213,11 @@ export default function Layout() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">Our Services</h3>
             <ul className="space-y-3">
-              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Endoscopy</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Colonoscopy</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Liver Disease Treatment</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Acid Reflux / GERD</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> IBS Treatment</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Endoscopy</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Colonoscopy</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Liver Disease Treatment</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Acid Reflux / GERD</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> IBS Treatment</Link></li>
             </ul>
           </div>
 
@@ -197,17 +226,21 @@ export default function Layout() {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="mr-3 text-sky-500 shrink-0 mt-1" size={20} />
-                <a href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition-colors">
+                <a href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all">
                   Opposite SBI Bank, Madhuban, Udaipur, Rajasthan
                 </a>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-3 text-sky-500 shrink-0" size={20} />
-                <span>+91 94141 58480</span>
+                <a href="tel:+919414158480" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all">
+                  +91 94141 58480
+                </a>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-3 text-sky-500 shrink-0" size={20} />
-                <span>info@drmayankameta.com</span>
+                <a href="mailto:info@drmayankameta.com" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all">
+                  info@drmayankameta.com
+                </a>
               </li>
             </ul>
           </div>
