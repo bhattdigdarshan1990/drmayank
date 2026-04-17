@@ -112,30 +112,33 @@ export default function Home() {
       </section>
 
       {/* Brief Intro */}
-      <section className="py-24 bg-slate-100/80 dark:bg-blue-950/20 ring-1 ring-slate-200 dark:ring-white/10">
-        <div className="max-w-screen-2xl mx-auto px-4">
+      <section className="py-24 bg-slate-900 dark:bg-[#0a0f1a] relative overflow-hidden">
+        {/* Subtle Background pattern for texture */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        
+        <div className="max-w-screen-2xl mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeIn} className="relative">
-              <div className="absolute inset-0 bg-sky-400/20 blur-3xl transform rotate-6 scale-90"></div>
+              <div className="absolute inset-0 bg-sky-500/20 blur-3xl transform rotate-6 scale-90"></div>
               <img 
                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop" 
                 alt="Clinic Setup" 
-                className="rounded-3xl shadow-2xl w-full relative z-10 border-8 border-white dark:border-sky-900/30"
+                className="rounded-3xl shadow-2xl w-full relative z-10 border-8 border-slate-800 dark:border-sky-900/30"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute -bottom-6 -right-6 bg-sky-600 text-white p-10 rounded-3xl shadow-2xl hidden md:block z-20">
+              <div className="absolute -bottom-6 -right-6 bg-sky-600 text-white p-10 rounded-3xl shadow-2xl hidden md:block z-20 border-4 border-slate-900">
                 <p className="text-5xl font-black mb-1">5000+</p>
                 <p className="text-sky-100 font-bold tracking-widest uppercase text-xs">Happy Patients</p>
               </div>
             </motion.div>
             
             <motion.div {...fadeIn}>
-              <h2 className="text-sky-700 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">About The Doctor</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-8 tracking-tighter md:whitespace-nowrap">Dr. Mayank Ameta</h3>
-              <p className="text-lg text-slate-900 dark:text-slate-100 mb-6 font-medium leading-relaxed text-justify">
+              <h2 className="text-sky-400 font-black tracking-widest uppercase text-xs mb-4">About The Doctor</h2>
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tighter md:whitespace-nowrap">Dr. Mayank Ameta</h3>
+              <p className="text-lg text-slate-300 mb-6 font-medium leading-relaxed text-justify">
                 Dr. Mayank Ameta is a Gastroenterologist in Madhuban, Udaipur. He is a renowned and highly trusted personality in the medical fraternity with rich experience in Gastroenterology. Dr. Ameta operates his consultation clinic and also serves as a Consultant at Pacific Hospital, Udaipur.
               </p>
-              <p className="text-lg text-slate-900 dark:text-slate-100 mb-8 font-medium leading-relaxed text-justify">
+              <p className="text-lg text-slate-300 mb-8 font-medium leading-relaxed text-justify">
                 He offers advanced medical treatments for Achalasia, Achlorhydria, Acute Liver Failure, Acute Pancreatitis, Barrett Esophagus, Cholangitis, Cholecystitis, Acalculous Cholecystitis, Acute Fatty Liver of Pregnancy, and more.
               </p>
               <ul className="space-y-5 mb-10">
@@ -146,14 +149,14 @@ export default function Home() {
                   'Personalized Treatment Plans'
                 ].map((item, i) => (
                   <li key={i} className="flex items-start">
-                    <CheckCircle2 className="text-sky-700 mr-4 shrink-0 mt-1" size={22} />
-                    <span className="text-slate-950 dark:text-blue-100 font-black">{item}</span>
+                    <CheckCircle2 className="text-sky-400 mr-4 shrink-0 mt-1" size={22} />
+                    <span className="text-white font-bold">{item}</span>
                   </li>
                 ))}
               </ul>
               <Link 
                 to="/about"
-                className="inline-flex items-center px-6 py-3 bg-sky-50 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 font-bold rounded-xl hover:bg-sky-600 hover:text-white dark:hover:bg-sky-400 dark:hover:text-sky-950 transition-all group"
+                className="inline-flex items-center px-8 py-4 bg-sky-600 text-white font-black rounded-xl hover:bg-sky-500 transition-all group shadow-xl shadow-sky-900/40"
               >
                 Read Full Profile 
                 <ArrowRight className="ml-2 transform group-hover:translate-x-1 transition-transform" size={18} />
@@ -213,13 +216,15 @@ export default function Home() {
       </section>
 
       {/* Map Section */}
-      <section className="py-24 bg-slate-100/80 dark:bg-blue-950/20 ring-1 ring-slate-200 dark:ring-white/10">
-        <div className="max-w-screen-2xl mx-auto px-4">
+      <section className="py-24 bg-slate-900 dark:bg-[#0a0f1a] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        
+        <div className="max-w-screen-2xl mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeIn}>
-              <h2 className="text-sky-700 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">Visit Our Clinic</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-8 tracking-tighter">Locate Us in Udaipur</h3>
-              <p className="text-lg text-slate-950 dark:text-slate-100 mb-10 leading-relaxed uppercase font-black tracking-tight">
+              <h2 className="text-sky-400 font-black tracking-widest uppercase text-xs mb-4">Visit Our Clinic</h2>
+              <h3 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tighter">Locate Us in Udaipur</h3>
+              <p className="text-lg text-slate-300 mb-10 leading-relaxed uppercase font-black tracking-tight">
                 Advanced Gastroenterology & Hepatology Centre <br/>
                 Opposite SBI Bank, Madhuban, Udaipur, <br />
                 Rajasthan, India - 313001
@@ -229,13 +234,13 @@ export default function Home() {
                   href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-sky-600 text-white font-black rounded-2xl hover:bg-sky-700 transition-all shadow-xl shadow-sky-200 dark:shadow-none"
+                  className="inline-flex items-center justify-center px-10 py-5 bg-sky-600 text-white font-black rounded-2xl hover:bg-sky-700 transition-all shadow-xl shadow-sky-900/40"
                 >
-                  <MapPin className="mr-2" size={20} /> Get Directions
+                  <MapPin className="mr-2" size={24} /> Get Directions
                 </a>
                 <Link 
                   to="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 font-black rounded-2xl hover:bg-sky-50 dark:hover:bg-sky-900/50 transition-all"
+                  className="inline-flex items-center justify-center px-10 py-5 bg-slate-800 text-sky-400 border border-slate-700 font-black rounded-2xl hover:bg-slate-700 transition-all"
                 >
                   Contact Details
                 </Link>
@@ -247,7 +252,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[450px] md:h-[550px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white dark:border-sky-900/30 group"
+              className="relative h-[450px] md:h-[550px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-slate-800 dark:border-sky-900/30 group"
             >
               <iframe 
                 src="https://maps.google.com/maps?q=Dr.+Mayank+Ameta+-+Advanced+Gastroenterology+%26+Hepatology+Centre,+Opposite+SBI+Bank,+Madhuban,+Udaipur&t=&z=16&ie=UTF8&iwloc=&output=embed" 
@@ -258,7 +263,7 @@ export default function Home() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Google Maps Location"
-                className="dark:invert dark:hue-rotate-180 dark:grayscale dark:opacity-80 transition-[filter,opacity] duration-700 group-hover:grayscale-0 group-hover:opacity-100"
+                className="transition-[filter,opacity] duration-700 opacity-90 group-hover:opacity-100"
               ></iframe>
             </motion.div>
           </div>
