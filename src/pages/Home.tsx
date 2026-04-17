@@ -1,10 +1,23 @@
-import { motion } from 'motion/react';
-import { ArrowRight, Activity, Heart, Shield, Clock, Star, CheckCircle2, Phone } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useAnimationControls } from 'motion/react';
+import { ArrowRight, Activity, Heart, Shield, Clock, Star, CheckCircle2, Phone, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroBg from '../assets/hero.png';
 import drAmeta from '../assets/doctor.png';
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 432; // card width + gap
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -38,7 +51,7 @@ export default function Home() {
                 Advanced Digestive Care with <span className="text-sky-600 dark:text-sky-400">Compassion</span> & Expertise
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed max-w-lg text-justify">
-                Comprehensive diagnosis and treatment for all gastrointestinal, liver, and pancreatic disorders by Dr. Mayank Ameta.
+                Comprehensive diagnosis and treatment for all gastrointestinal, liver, and pancreatic disorders by <span className="md:whitespace-nowrap">Dr. Mayank Ameta</span>.
               </p>
             </motion.div>
             
@@ -75,9 +88,9 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 -mt-24 relative z-20">
             {[
-              { icon: Shield, title: 'Expert Care', desc: 'Highly qualified specialist with extensive experience in complex GI cases.' },
-              { icon: Heart, title: 'Patient-Centric', desc: 'Compassionate approach focusing on patient comfort and clear communication.' },
-              { icon: Clock, title: 'Consultant', desc: 'Serving as a trusted Consultant Gastroenterologist at Pacific Hospital, Udaipur.' }
+              { icon: Shield, title: 'Expert Care', desc: 'Highly qualified specialist with extensive experience in managed complex gastrointestinal and hepatic cases.' },
+              { icon: Heart, title: 'Patient-Centric', desc: 'A compassionate, empathetic approach focusing on patient comfort, holistic well-being and clear communication.' },
+              { icon: Clock, title: 'Consultant', desc: 'Serving as a highly trusted Consultant Gastroenterologist at the prestigious Pacific Hospital, Udaipur.' }
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}
@@ -91,7 +104,7 @@ export default function Home() {
                   <feature.icon size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">{feature.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">{feature.desc}</p>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm text-justify">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -118,7 +131,7 @@ export default function Home() {
             
             <motion.div {...fadeIn}>
               <h2 className="text-sky-600 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">About The Doctor</h2>
-              <h3 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-8 tracking-tighter">Dr. Mayank Ameta</h3>
+              <h3 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-8 tracking-tighter md:whitespace-nowrap">Dr. Mayank Ameta</h3>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-justify">
                 Dr. Mayank Ameta is a Gastroenterologist in Madhuban, Udaipur. He is a renowned and highly trusted personality in the medical fraternity with rich experience in Gastroenterology. Dr. Ameta operates his consultation clinic and also serves as a Consultant at Pacific Hospital, Udaipur.
               </p>
@@ -180,7 +193,7 @@ export default function Home() {
                   )}
                 </div>
                 <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">{service.title}</h4>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-8 leading-relaxed">{service.desc}</p>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mb-8 leading-relaxed text-justify">{service.desc}</p>
                 <Link to="/services" className="text-sky-600 dark:text-sky-400 font-bold text-sm hover:underline flex items-center mt-auto">
                   Details <ArrowRight size={16} className="ml-1" />
                 </Link>
@@ -195,6 +208,82 @@ export default function Home() {
             >
               Explore All Services
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Google Reviews Marquee */}
+      <section className="py-24 bg-white dark:bg-[#070b14] overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-4 mb-16 text-center">
+           <div className="flex items-center justify-center space-x-3 mb-6">
+              <span className="h-[1px] w-8 bg-sky-600"></span>
+              <span className="text-sky-600 font-bold text-xs uppercase tracking-[0.2em]">Patient Voices</span>
+              <span className="h-[1px] w-8 bg-sky-600"></span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter">Trusted by Thousands.</h2>
+        </div>
+
+        {/* Carousel Container */}
+        <div className="relative group">
+          {/* Navigation Arrows */}
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute left-8 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 dark:bg-[#070b14]/90 backdrop-blur-md border border-gray-100 dark:border-white/10 text-gray-900 dark:text-white shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 hover:scale-110 active:scale-95 hidden md:flex items-center justify-center cursor-pointer"
+            aria-label="Previous review"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute right-8 top-1/2 -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 dark:bg-[#070b14]/90 backdrop-blur-md border border-gray-100 dark:border-white/10 text-gray-900 dark:text-white shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 hover:scale-110 active:scale-95 hidden md:flex items-center justify-center cursor-pointer"
+            aria-label="Next review"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Fades */}
+          <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-white dark:from-[#070b14] to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-white dark:from-[#070b14] to-transparent z-10 pointer-events-none"></div>
+
+          <div 
+            ref={scrollRef}
+            className="flex overflow-x-auto scroll-smooth hide-scrollbar snap-x snap-mandatory py-10"
+          >
+            <div className="flex space-x-8 px-4 md:px-24 py-4">
+              {[
+                { name: "Digdarshan Bhatt", rating: 5, text: "BEST DOCTOR , HE IS EXPERT OF HIS FIELD", date: "Recently" },
+                { name: "Kishor Patidar", rating: 5, text: "Got 100% recovery from ulcers in just 3 days with Dr. Mayank Ameta's medicine after month-long treatment elsewhere failed. Thank you doctor.", date: "10 months ago" },
+                { name: "Priyanka Ameta", rating: 5, text: "Most knowledgeable and genuine doctor in his field. Strongly recommended.", date: "7 months ago" },
+                { name: "Parshu Ram Dhaker", rating: 5, text: "He is the best Doctor in Udaipur, behavior is very good.", date: "8 months ago" },
+                { name: "Abhishek Singh Gurjar", rating: 5, text: "Such a gem of a person, very soft spoken, intellect yet down to earth. Provides proper guidance.", date: "A year ago" },
+                { name: "Vinod Saini", rating: 5, text: "Very best doctor in diagnostic & treatment in Udaipur gastroenterology.", date: "8 months ago" }
+              ].map((review, idx) => (
+                <div 
+                  key={idx} 
+                  className="flex-shrink-0 w-[280px] md:w-[400px] bg-white dark:bg-[#0d1525] p-8 rounded-[2.5rem] shadow-sm border border-slate-100 dark:border-sky-900/30 snap-center hover:border-sky-500/50 transition-all duration-500 group/card"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 rounded-xl flex items-center justify-center font-black text-sky-600 transition-transform group-hover/card:scale-110">
+                      {review.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-black text-slate-900 dark:text-white tracking-tight">{review.name}</p>
+                      <div className="flex gap-0.5 mt-1">
+                        {[...Array(review.rating)].map((_, i) => (
+                          <Star key={i} size={12} className="fill-sky-500 text-sky-500" />
+                        ))}
+                      </div>
+                    </div>
+                    <div className="ml-auto opacity-10">
+                       <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" className="h-4" />
+                    </div>
+                  </div>
+                  <p className="text-slate-600 dark:text-slate-300 italic leading-relaxed text-sm mb-4">"{review.text}"</p>
+                  <p className="text-[10px] uppercase font-black tracking-widest text-slate-400">{review.date}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

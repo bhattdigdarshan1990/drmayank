@@ -1,12 +1,11 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, MapPin, MessageCircle, Activity, Sun, Moon } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, MessageCircle, Stethoscope } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -19,21 +18,22 @@ export default function Layout() {
   }, []);
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+    // Force light mode
+    document.documentElement.classList.remove('dark');
+    localStorage.removeItem('theme');
+  }, []);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    window.scrollTo(0, 0);
+    // Use a small timeout to ensure DOM is ready and any route transitions are firing
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+    }, 10);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   const navLinks = [
@@ -45,7 +45,7 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans transition-all duration-700 ease-in-out bg-white text-gray-800 dark:bg-[#070b14] dark:text-blue-50">
+    <div className="min-h-screen flex flex-col font-sans transition-all duration-700 ease-in-out bg-white text-gray-800">
       <div className="fixed w-full z-50 top-0 left-0 flex flex-col transition-all duration-300">
         {/* Top Bar */}
         <div className={`py-2 px-4 hidden md:block transition-colors duration-700 ${isScrolled ? 'bg-sky-700 text-white' : (isHome ? 'bg-sky-900/30 backdrop-blur-sm text-white' : 'bg-sky-600 text-white')}`}>
@@ -65,22 +65,22 @@ export default function Layout() {
         {/* Navbar */}
         <header
           className={`transition-all duration-700 ${
-            isScrolled ? 'bg-white shadow-md py-3 dark:bg-[#0d1525]' : (isHome ? 'bg-white/70 backdrop-blur-md py-5 dark:bg-[#0d1525]/70' : 'bg-white shadow-sm py-5 dark:bg-[#0d1525]')
+            isScrolled ? 'bg-white shadow-md py-3' : (isHome ? 'bg-white/70 backdrop-blur-md py-5' : 'bg-white shadow-sm py-5')
           }`}
         >
         <div className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 shadow-lg shadow-sky-500/30 group-hover:shadow-sky-500/50 transition-all duration-300 transform group-hover:-translate-y-0.5">
-              <Activity className="text-white w-6 h-6" />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center transition-colors duration-700">
-                <div className="w-2 h-2 bg-sky-500 rounded-full"></div>
+            <div className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-500 to-sky-700 shadow-xl shadow-sky-500/20 group-hover:shadow-sky-500/40 transition-all duration-500 transform group-hover:-translate-y-1">
+              <Stethoscope className="text-white w-7 h-7" strokeWidth={1.5} />
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <div className="w-2.5 h-2.5 bg-sky-500 rounded-full animate-pulse"></div>
               </div>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-white leading-none mb-1 transition-colors duration-700">
+              <h1 className="text-2xl font-extrabold tracking-tight text-slate-800 leading-none mb-1 transition-colors duration-700 md:whitespace-nowrap">
                 Dr. Mayank <span className="text-sky-600">Ameta</span>
               </h1>
-              <p className="text-[10px] font-bold tracking-widest text-slate-500 dark:text-sky-400 uppercase transition-colors duration-700">
+              <p className="text-[10px] font-bold tracking-widest text-slate-500 uppercase transition-colors duration-700">
                 Gastroenterologist
               </p>
             </div>
@@ -93,54 +93,18 @@ export default function Layout() {
                 key={link.name}
                 to={link.path}
                 className={`font-medium transition-all duration-700 hover:text-sky-600 ${
-                  location.pathname === link.path ? 'text-sky-600 border-b-2 border-sky-600' : 'text-gray-600 dark:text-blue-100'
+                  location.pathname === link.path ? 'text-sky-600 border-b-2 border-sky-600' : 'text-gray-600'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            
-            {/* Premium Theme Toggle Switch */}
-            <button
-              onClick={toggleTheme}
-              className="relative w-14 h-7 rounded-full bg-slate-200 dark:bg-sky-900/50 transition-colors duration-700 focus:outline-none focus:ring-2 focus:ring-sky-500 overflow-hidden"
-              aria-label="Toggle Theme"
-            >
-              <motion.div
-                className="absolute top-1 left-1 w-5 h-5 rounded-full bg-white dark:bg-sky-400 shadow-sm flex items-center justify-center z-10"
-                animate={{ x: theme === 'dark' ? 28 : 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              >
-                {theme === 'light' ? (
-                  <Sun size={12} className="text-amber-500" />
-                ) : (
-                  <Moon size={12} className="text-sky-900" />
-                )}
-              </motion.div>
-              <div className="flex justify-between items-center h-full px-2 opacity-40">
-                <Sun size={12} className="dark:text-white" />
-                <Moon size={12} className="text-slate-600 dark:text-white" />
-              </div>
-            </button>
           </nav>
 
           {/* Mobile Actions */}
           <div className="md:hidden flex items-center space-x-4">
             <button
-              onClick={toggleTheme}
-              className="relative w-12 h-6 rounded-full bg-slate-100 dark:bg-slate-800 transition-colors duration-700 focus:outline-none"
-              aria-label="Toggle Theme"
-            >
-              <motion.div
-                className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white dark:bg-sky-500 shadow-sm flex items-center justify-center"
-                animate={{ x: theme === 'dark' ? 24 : 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              >
-                {theme === 'light' ? <Sun size={10} className="text-amber-500" /> : <Moon size={10} className="text-white" />}
-              </motion.div>
-            </button>
-            <button
-              className="text-gray-600 dark:text-blue-100 hover:text-sky-600 transition-colors duration-700"
+              className="text-gray-600 hover:text-sky-600 transition-colors duration-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -155,7 +119,7 @@ export default function Layout() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white dark:bg-[#0d1525] border-t dark:border-blue-900/30 mt-3 overflow-hidden"
+              className="md:hidden bg-white border-t mt-3 overflow-hidden"
             >
               <div className="flex flex-col px-4 py-4 space-y-4">
                 {navLinks.map((link) => (
@@ -163,7 +127,7 @@ export default function Layout() {
                     key={link.name}
                     to={link.path}
                     className={`font-medium px-2 py-1 ${
-                      location.pathname === link.path ? 'text-sky-600' : 'text-gray-600 dark:text-blue-100'
+                      location.pathname === link.path ? 'text-sky-600' : 'text-gray-600'
                     }`}
                   >
                     {link.name}
@@ -178,7 +142,6 @@ export default function Layout() {
 
       {/* Main Content */}
       <motion.main 
-        key={theme}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -191,16 +154,16 @@ export default function Layout() {
       <footer className="bg-[#070b14] text-blue-200/80 pt-16 pb-8 border-t border-blue-900/30">
         <div className="max-w-screen-2xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                MA
+            <div className="flex items-center space-x-3 mb-8 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-sky-500 to-sky-700 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:shadow-sky-500/30 transition-all duration-500">
+                <Stethoscope size={24} strokeWidth={1.5} />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white leading-tight">Dr. Mayank Ameta</h2>
-                <p className="text-xs text-sky-400 font-medium tracking-wide">Gastroenterologist</p>
+                <h2 className="text-2xl font-black text-white leading-none tracking-tighter">Dr. Mayank Ameta</h2>
+                <p className="text-[10px] text-sky-400 font-black uppercase tracking-[0.2em] mt-1">Gastroenterologist</p>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-6">
+            <p className="text-sm leading-relaxed mb-6 text-justify">
               Providing advanced digestive care with compassion and expertise. Dedicated to improving your gastrointestinal health and overall well-being.
             </p>
           </div>
