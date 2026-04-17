@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Award, BookOpen, Target, Users } from 'lucide-react';
-import drAmeta from '../assets/doctor.png';
+import drAmeta from '../assets/doctor.webp';
 
 export default function About() {
   const fadeIn = {

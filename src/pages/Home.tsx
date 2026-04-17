@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import { motion, useAnimationControls } from 'motion/react';
 import { ArrowRight, Activity, Heart, Shield, Clock, Star, CheckCircle2, Phone, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import heroBg from '../assets/hero.png';
-import drAmeta from '../assets/doctor.png';
+import heroBg from '../assets/hero.webp';
+import drAmeta from '../assets/doctor.webp';
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
