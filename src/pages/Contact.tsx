@@ -136,7 +136,7 @@ export default function Contact() {
           >
             <div className="bg-white dark:bg-[#0d1525] rounded-[3.5rem] p-4 shadow-sm border border-slate-100 dark:border-sky-900/40 h-[600px] lg:h-[850px] overflow-hidden sticky top-32 group">
               <iframe 
-                src="https://maps.google.com/maps?q=Dr.+Mayank+Ameta,+Opposite+SBI+Bank,+Madhuban,+Udaipur&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                src="https://maps.google.com/maps?q=Dr.+Mayank+Ameta+-+Advanced+Gastroenterology+%26+Hepatology+Centre,+Opposite+SBI+Bank,+Madhuban,+Udaipur&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0, borderRadius: '2.5rem' }} 
@@ -144,7 +144,7 @@ export default function Contact() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Clinic Location"
-                className="dark:invert dark:hue-rotate-180 dark:grayscale dark:opacity-80 transition-all duration-1000 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
+                className="dark:invert dark:hue-rotate-180 dark:grayscale dark:opacity-80 transition-[filter,opacity] duration-1000 group-hover:grayscale-0 group-hover:opacity-100"
               ></iframe>
               
               {/* Map Floating Badge */}

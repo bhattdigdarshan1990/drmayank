@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useAnimationControls } from 'motion/react';
-import { ArrowRight, Activity, Heart, Shield, Clock, Star, CheckCircle2, Phone, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Activity, Heart, Shield, Clock, Star, CheckCircle2, Phone, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroBg from '../assets/hero.png';
 import drAmeta from '../assets/doctor.png';
@@ -208,6 +208,59 @@ export default function Home() {
             >
               Explore All Services
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-24 bg-sky-50 dark:bg-blue-900/5">
+        <div className="max-w-screen-2xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div {...fadeIn}>
+              <h2 className="text-sky-600 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">Visit Our Clinic</h2>
+              <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter">Locate Us in Udaipur</h3>
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed uppercase font-bold tracking-tight">
+                Advanced Gastroenterology & Hepatology Centre <br/>
+                Opposite SBI Bank, Madhuban, Udaipur, <br />
+                Rajasthan, India - 313001
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6">
+                <a 
+                  href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-sky-600 text-white font-black rounded-2xl hover:bg-sky-700 transition-all shadow-xl shadow-sky-200 dark:shadow-none"
+                >
+                  <MapPin className="mr-2" size={20} /> Get Directions
+                </a>
+                <Link 
+                  to="/contact"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 font-black rounded-2xl hover:bg-sky-50 dark:hover:bg-sky-900/50 transition-all"
+                >
+                  Contact Details
+                </Link>
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative h-[450px] md:h-[550px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white dark:border-sky-900/30 group"
+            >
+              <iframe 
+                src="https://maps.google.com/maps?q=Dr.+Mayank+Ameta+-+Advanced+Gastroenterology+%26+Hepatology+Centre,+Opposite+SBI+Bank,+Madhuban,+Udaipur&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Google Maps Location"
+                className="dark:invert dark:hue-rotate-180 dark:grayscale dark:opacity-80 transition-[filter,opacity] duration-700 group-hover:grayscale-0 group-hover:opacity-100"
+              ></iframe>
+            </motion.div>
           </div>
         </div>
       </section>
