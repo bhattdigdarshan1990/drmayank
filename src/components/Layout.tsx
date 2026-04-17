@@ -1,11 +1,12 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, MapPin, MessageCircle, Activity } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, MessageCircle, Activity, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -16,6 +17,19 @@ export default function Layout() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -31,10 +45,10 @@ export default function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-slate-50">
+    <div className="min-h-screen flex flex-col font-sans transition-all duration-700 ease-in-out bg-slate-50 text-gray-800 dark:bg-slate-950 dark:text-slate-200">
       <div className="fixed w-full z-50 top-0 left-0 flex flex-col transition-all duration-300">
         {/* Top Bar */}
-        <div className={`py-2 px-4 hidden md:block transition-colors duration-300 ${isScrolled ? 'bg-teal-800 text-white' : (isHome ? 'bg-teal-900/30 backdrop-blur-sm text-white' : 'bg-teal-700 text-white')}`}>
+        <div className={`py-2 px-4 hidden md:block transition-colors duration-700 ${isScrolled ? 'bg-teal-800 text-white' : (isHome ? 'bg-teal-900/30 backdrop-blur-sm text-white' : 'bg-teal-700 text-white')}`}>
           <div className="max-w-screen-2xl mx-auto flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <span className="flex items-center"><Phone size={16} className="mr-2" /> +91 94141 58480</span>
@@ -50,23 +64,23 @@ export default function Layout() {
 
         {/* Navbar */}
         <header
-          className={`transition-all duration-300 ${
-            isScrolled ? 'bg-white shadow-md py-3' : (isHome ? 'bg-white/70 backdrop-blur-md py-5' : 'bg-white shadow-sm py-5')
+          className={`transition-all duration-700 ${
+            isScrolled ? 'bg-white shadow-md py-3 dark:bg-slate-900' : (isHome ? 'bg-white/70 backdrop-blur-md py-5 dark:bg-slate-900/70' : 'bg-white shadow-sm py-5 dark:bg-slate-900')
           }`}
         >
         <div className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 shadow-lg shadow-teal-500/30 group-hover:shadow-teal-500/50 transition-all duration-300 transform group-hover:-translate-y-0.5">
               <Activity className="text-white w-6 h-6" />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center transition-colors duration-700">
                 <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
               </div>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-2xl font-extrabold tracking-tight text-slate-800 leading-none mb-1">
+              <h1 className="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-white leading-none mb-1 transition-colors duration-700">
                 Dr. Mayank <span className="text-teal-600">Ameta</span>
               </h1>
-              <p className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">
+              <p className="text-[10px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase transition-colors duration-700">
                 Gastroenterologist
               </p>
             </div>
@@ -78,22 +92,60 @@ export default function Layout() {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`font-medium transition-colors hover:text-teal-600 ${
-                  location.pathname === link.path ? 'text-teal-600 border-b-2 border-teal-600' : 'text-gray-600'
+                className={`font-medium transition-all duration-700 hover:text-teal-600 ${
+                  location.pathname === link.path ? 'text-teal-600 border-b-2 border-teal-600' : 'text-gray-600 dark:text-slate-300'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
+            
+            {/* Premium Theme Toggle Switch */}
+            <button
+              onClick={toggleTheme}
+              className="relative w-14 h-7 rounded-full bg-slate-200 dark:bg-teal-900/50 transition-colors duration-700 focus:outline-none focus:ring-2 focus:ring-teal-500 overflow-hidden"
+              aria-label="Toggle Theme"
+            >
+              <motion.div
+                className="absolute top-1 left-1 w-5 h-5 rounded-full bg-white dark:bg-teal-400 shadow-sm flex items-center justify-center z-10"
+                animate={{ x: theme === 'dark' ? 28 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              >
+                {theme === 'light' ? (
+                  <Sun size={12} className="text-amber-500" />
+                ) : (
+                  <Moon size={12} className="text-teal-900" />
+                )}
+              </motion.div>
+              <div className="flex justify-between items-center h-full px-2 opacity-40">
+                <Sun size={12} className="dark:text-white" />
+                <Moon size={12} className="text-slate-600 dark:text-white" />
+              </div>
+            </button>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-600 hover:text-teal-600"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* Mobile Actions */}
+          <div className="md:hidden flex items-center space-x-4">
+            <button
+              onClick={toggleTheme}
+              className="relative w-12 h-6 rounded-full bg-slate-100 dark:bg-slate-800 transition-colors duration-700 focus:outline-none"
+              aria-label="Toggle Theme"
+            >
+              <motion.div
+                className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white dark:bg-teal-500 shadow-sm flex items-center justify-center"
+                animate={{ x: theme === 'dark' ? 24 : 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              >
+                {theme === 'light' ? <Sun size={10} className="text-amber-500" /> : <Moon size={10} className="text-white" />}
+              </motion.div>
+            </button>
+            <button
+              className="text-gray-600 dark:text-slate-300 hover:text-teal-600 transition-colors duration-700"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}
@@ -103,7 +155,7 @@ export default function Layout() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t mt-3 overflow-hidden"
+              className="md:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800 mt-3 overflow-hidden"
             >
               <div className="flex flex-col px-4 py-4 space-y-4">
                 {navLinks.map((link) => (
@@ -111,7 +163,7 @@ export default function Layout() {
                     key={link.name}
                     to={link.path}
                     className={`font-medium px-2 py-1 ${
-                      location.pathname === link.path ? 'text-teal-600' : 'text-gray-600'
+                      location.pathname === link.path ? 'text-teal-600' : 'text-gray-600 dark:text-slate-300'
                     }`}
                   >
                     {link.name}
@@ -125,9 +177,15 @@ export default function Layout() {
       </div>
 
       {/* Main Content */}
-      <main className={`flex-grow ${isHome ? '' : 'pt-[116px]'}`}>
+      <motion.main 
+        key={theme}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        className={`flex-grow ${isHome ? '' : 'pt-[116px]'}`}
+      >
         <Outlet />
-      </main>
+      </motion.main>
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">

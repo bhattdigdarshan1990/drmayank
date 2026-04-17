@@ -42,7 +42,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-20">
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-20">
       {/* Page Header */}
       <div className="bg-teal-700 text-white py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
@@ -64,20 +64,20 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow flex flex-col h-full"
+              className="bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-800 hover:shadow-xl transition-shadow flex flex-col h-full"
             >
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border ${service.color}`}>
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border ${service.color.replace('border-', 'dark:border-').replace('bg-', 'dark:bg-opacity-20 dark:bg-')}`}>
                 <service.icon size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">{service.title}</h3>
-              <p className="text-slate-600 leading-relaxed flex-grow mb-6">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{service.title}</h3>
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed flex-grow mb-6">
                 {service.description}
               </p>
               <a 
-                href="https://wa.me/919876543210" 
+                href="https://wa.me/919414158480" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-teal-600 font-semibold hover:text-teal-800 inline-flex items-center mt-auto"
+                className="text-teal-600 dark:text-teal-400 font-semibold hover:text-teal-800 dark:hover:text-teal-300 inline-flex items-center mt-auto"
               >
                 Inquire about this <span className="ml-2">→</span>
               </a>
@@ -89,8 +89,8 @@ export default function Services() {
       {/* FAQ Section */}
       <section className="max-w-4xl mx-auto px-4 mt-24">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
-          <p className="text-slate-600">Common queries about our procedures and treatments.</p>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+          <p className="text-slate-600 dark:text-slate-400">Common queries about our procedures and treatments.</p>
         </div>
 
         <div className="space-y-6">
@@ -117,10 +117,10 @@ export default function Services() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100"
+              className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800"
             >
-              <h4 className="text-lg font-bold text-slate-900 mb-2">{faq.q}</h4>
-              <p className="text-slate-600">{faq.a}</p>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{faq.q}</h4>
+              <p className="text-slate-600 dark:text-slate-400">{faq.a}</p>
             </motion.div>
           ))}
         </div>

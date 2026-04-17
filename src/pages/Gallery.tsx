@@ -39,7 +39,7 @@ export default function Gallery() {
   ];
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-20">
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-20">
       {/* Page Header */}
       <div className="bg-teal-700 text-white py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
@@ -61,7 +61,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md aspect-video bg-gray-200"
+              className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md aspect-video bg-gray-200 dark:bg-slate-800"
               onClick={() => setSelectedImg(img.src)}
             >
               <img 
