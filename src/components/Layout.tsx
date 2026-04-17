@@ -10,17 +10,17 @@ export default function Layout() {
   const isHome = location.pathname === '/';
 
   useEffect(() => {
-    // Force light mode
-    document.documentElement.classList.remove('dark');
-    localStorage.removeItem('theme');
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Force light mode
+    document.documentElement.classList.remove('dark');
+    localStorage.removeItem('theme');
   }, []);
 
   useEffect(() => {
@@ -92,11 +92,14 @@ export default function Layout() {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`font-medium transition-all duration-700 hover:text-sky-600 ${
-                  location.pathname === link.path ? 'text-sky-600 border-b-2 border-sky-600' : 'text-gray-600'
+                className={`font-semibold transition-all duration-300 relative group py-1 ${
+                  location.pathname === link.path ? 'text-sky-600' : 'text-slate-600 hover:text-sky-600'
                 }`}
               >
                 {link.name}
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-sky-600 transform transition-transform duration-300 origin-left ${
+                  location.pathname === link.path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                }`}></span>
               </Link>
             ))}
           </nav>
@@ -173,8 +176,8 @@ export default function Layout() {
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center">
-                    <span className="mr-2 text-sky-500 font-bold">›</span> {link.name}
+                  <Link to={link.path} className="hover:text-sky-400 transition-colors flex items-center">
+                    <span className="mr-2">›</span> {link.name}
                   </Link>
                 </li>
               ))}
@@ -184,11 +187,11 @@ export default function Layout() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">Our Services</h3>
             <ul className="space-y-3">
-              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Endoscopy</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Colonoscopy</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Liver Disease Treatment</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> Acid Reflux / GERD</Link></li>
-              <li><Link to="/services" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all flex items-center"><span className="mr-2 text-sky-500 font-bold">›</span> IBS Treatment</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Endoscopy</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Colonoscopy</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Liver Disease Treatment</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> Acid Reflux / GERD</Link></li>
+              <li><Link to="/services" className="hover:text-sky-400 transition-colors flex items-center"><span className="mr-2">›</span> IBS Treatment</Link></li>
             </ul>
           </div>
 
@@ -197,21 +200,17 @@ export default function Layout() {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="mr-3 text-sky-500 shrink-0 mt-1" size={20} />
-                <a href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all">
+                <a href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition-colors">
                   Opposite SBI Bank, Madhuban, Udaipur, Rajasthan
                 </a>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-3 text-sky-500 shrink-0" size={20} />
-                <a href="tel:+919414158480" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all">
-                  +91 94141 58480
-                </a>
+                <span>+91 94141 58480</span>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-3 text-sky-500 shrink-0" size={20} />
-                <a href="mailto:info@drmayankameta.com" className="hover:text-sky-400 hover:underline decoration-sky-500 underline-offset-4 transition-all">
-                  info@drmayankameta.com
-                </a>
+                <span>info@drmayankameta.com</span>
               </li>
             </ul>
           </div>

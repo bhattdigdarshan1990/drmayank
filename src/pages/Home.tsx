@@ -103,8 +103,8 @@ export default function Home() {
                 <div className="w-14 h-14 bg-sky-50 dark:bg-sky-900/30 rounded-2xl flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 border border-sky-100 dark:border-sky-800/50">
                   <feature.icon size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3 tracking-tight">{feature.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm text-justify">{feature.desc}</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">{feature.title}</h3>
+                <p className="text-slate-700 dark:text-slate-400 leading-relaxed text-sm text-justify">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -112,7 +112,7 @@ export default function Home() {
       </section>
 
       {/* Brief Intro */}
-      <section className="py-24 bg-sky-50/50 dark:bg-blue-900/10">
+      <section className="py-24 bg-slate-100/80 dark:bg-blue-950/20 ring-1 ring-slate-200 dark:ring-white/10">
         <div className="max-w-screen-2xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeIn} className="relative">
@@ -130,12 +130,12 @@ export default function Home() {
             </motion.div>
             
             <motion.div {...fadeIn}>
-              <h2 className="text-sky-600 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">About The Doctor</h2>
-              <h3 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-8 tracking-tighter md:whitespace-nowrap">Dr. Mayank Ameta</h3>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-justify">
+              <h2 className="text-sky-700 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">About The Doctor</h2>
+              <h3 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-8 tracking-tighter md:whitespace-nowrap">Dr. Mayank Ameta</h3>
+              <p className="text-lg text-slate-900 dark:text-slate-100 mb-6 font-medium leading-relaxed text-justify">
                 Dr. Mayank Ameta is a Gastroenterologist in Madhuban, Udaipur. He is a renowned and highly trusted personality in the medical fraternity with rich experience in Gastroenterology. Dr. Ameta operates his consultation clinic and also serves as a Consultant at Pacific Hospital, Udaipur.
               </p>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed text-justify">
+              <p className="text-lg text-slate-900 dark:text-slate-100 mb-8 font-medium leading-relaxed text-justify">
                 He offers advanced medical treatments for Achalasia, Achlorhydria, Acute Liver Failure, Acute Pancreatitis, Barrett Esophagus, Cholangitis, Cholecystitis, Acalculous Cholecystitis, Acute Fatty Liver of Pregnancy, and more.
               </p>
               <ul className="space-y-5 mb-10">
@@ -146,8 +146,8 @@ export default function Home() {
                   'Personalized Treatment Plans'
                 ].map((item, i) => (
                   <li key={i} className="flex items-start">
-                    <CheckCircle2 className="text-sky-500 mr-4 shrink-0 mt-1" size={22} />
-                    <span className="text-slate-700 dark:text-blue-100 font-semibold">{item}</span>
+                    <CheckCircle2 className="text-sky-700 mr-4 shrink-0 mt-1" size={22} />
+                    <span className="text-slate-950 dark:text-blue-100 font-black">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -193,7 +193,7 @@ export default function Home() {
                   )}
                 </div>
                 <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">{service.title}</h4>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mb-8 leading-relaxed text-justify">{service.desc}</p>
+                <p className="text-slate-700 dark:text-slate-400 text-sm mb-8 leading-relaxed text-justify">{service.desc}</p>
                 <Link to="/services" className="text-sky-600 dark:text-sky-400 font-bold text-sm hover:underline flex items-center mt-auto">
                   Details <ArrowRight size={16} className="ml-1" />
                 </Link>
@@ -213,13 +213,13 @@ export default function Home() {
       </section>
 
       {/* Map Section */}
-      <section className="py-24 bg-sky-50 dark:bg-blue-900/5">
+      <section className="py-24 bg-slate-100/80 dark:bg-blue-950/20 ring-1 ring-slate-200 dark:ring-white/10">
         <div className="max-w-screen-2xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeIn}>
-              <h2 className="text-sky-600 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">Visit Our Clinic</h2>
-              <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter">Locate Us in Udaipur</h3>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed uppercase font-bold tracking-tight">
+              <h2 className="text-sky-700 dark:text-sky-400 font-black tracking-widest uppercase text-xs mb-4">Visit Our Clinic</h2>
+              <h3 className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-8 tracking-tighter">Locate Us in Udaipur</h3>
+              <p className="text-lg text-slate-950 dark:text-slate-100 mb-10 leading-relaxed uppercase font-black tracking-tight">
                 Advanced Gastroenterology & Hepatology Centre <br/>
                 Opposite SBI Bank, Madhuban, Udaipur, <br />
                 Rajasthan, India - 313001
@@ -332,8 +332,8 @@ export default function Home() {
                        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" className="h-4" />
                     </div>
                   </div>
-                  <p className="text-slate-600 dark:text-slate-300 italic leading-relaxed text-sm mb-4">"{review.text}"</p>
-                  <p className="text-[10px] uppercase font-black tracking-widest text-slate-400">{review.date}</p>
+                  <p className="text-slate-800 dark:text-slate-200 italic leading-relaxed text-sm mb-4 font-medium">"{review.text}"</p>
+                  <p className="text-[10px] uppercase font-black tracking-widest text-slate-500">{review.date}</p>
                 </div>
               ))}
             </div>
