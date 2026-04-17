@@ -8,7 +8,7 @@ export default function Contact() {
       {/* Page Header */}
       <div className="bg-teal-700 text-white py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-screen-2xl mx-auto px-4 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-teal-100 text-lg max-w-2xl mx-auto">
             Get in touch to schedule an appointment or ask a question.

@@ -24,7 +24,7 @@ export default function Home() {
         {/* Gradient Overlay - Adjusted for better background visibility while keeping text readable */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent"></div>
         
-        <div className="max-w-7xl mx-auto px-4 pt-36 pb-20 md:pt-48 md:pb-32 relative z-10">
+        <div className="max-w-screen-2xl mx-auto px-4 pt-36 pb-20 md:pt-48 md:pb-32 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -72,7 +72,7 @@ export default function Home() {
 
       {/* Highlights / Features */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-screen-2xl mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 -mt-24 relative z-20">
             {[
               { icon: Shield, title: 'Expert Care', desc: 'Highly qualified specialist with extensive experience in complex GI cases.' },
@@ -100,7 +100,7 @@ export default function Home() {
 
       {/* Brief Intro */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-screen-2xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeIn} className="relative">
               <img 
@@ -151,7 +151,7 @@ export default function Home() {
 
       {/* Services Overview */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-screen-2xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-3">Our Expertise</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Comprehensive Gastroenterology Services</h3>

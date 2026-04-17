@@ -35,7 +35,7 @@ export default function Layout() {
       <div className="fixed w-full z-50 top-0 left-0 flex flex-col transition-all duration-300">
         {/* Top Bar */}
         <div className={`py-2 px-4 hidden md:block transition-colors duration-300 ${isScrolled ? 'bg-teal-800 text-white' : (isHome ? 'bg-teal-900/30 backdrop-blur-sm text-white' : 'bg-teal-700 text-white')}`}>
-          <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
+          <div className="max-w-screen-2xl mx-auto flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <span className="flex items-center"><Phone size={16} className="mr-2" /> +91 94141 58480</span>
               <span className="flex items-center"><Mail size={16} className="mr-2" /> info@drmayankameta.com</span>
@@ -54,7 +54,7 @@ export default function Layout() {
             isScrolled ? 'bg-white shadow-md py-3' : (isHome ? 'bg-white/70 backdrop-blur-md py-5' : 'bg-white shadow-sm py-5')
           }`}
         >
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+        <div className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 shadow-lg shadow-teal-500/30 group-hover:shadow-teal-500/50 transition-all duration-300 transform group-hover:-translate-y-0.5">
               <Activity className="text-white w-6 h-6" />
@@ -131,7 +131,7 @@ export default function Layout() {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="max-w-screen-2xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center space-x-2 mb-6">
               <div className="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -192,7 +192,7 @@ export default function Layout() {
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-sm text-center flex flex-col md:flex-row justify-between items-center">
+        <div className="max-w-screen-2xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-sm text-center flex flex-col md:flex-row justify-between items-center">
           <p>&copy; {new Date().getFullYear()} Dr. Mayank Ameta. All rights reserved.</p>
           <div className="mt-4 md:mt-0 space-x-4">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

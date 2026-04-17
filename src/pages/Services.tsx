@@ -46,7 +46,7 @@ export default function Services() {
       {/* Page Header */}
       <div className="bg-teal-700 text-white py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-screen-2xl mx-auto px-4 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
           <p className="text-teal-100 text-lg max-w-2xl mx-auto">
             Comprehensive diagnostic and therapeutic solutions for all your digestive health needs.
@@ -55,7 +55,7 @@ export default function Services() {
       </div>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-4 -mt-10 relative z-20">
+      <div className="max-w-screen-2xl mx-auto px-4 -mt-10 relative z-20">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (
             <motion.div

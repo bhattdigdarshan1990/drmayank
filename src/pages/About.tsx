@@ -15,7 +15,7 @@ export default function About() {
       {/* Page Header */}
       <div className="bg-teal-700 text-white py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-screen-2xl mx-auto px-4 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About Dr. Mayank Ameta</h1>
           <p className="text-teal-100 text-lg max-w-2xl mx-auto">
             Dedicated to excellence in Gastroenterology and Hepatology
@@ -25,7 +25,7 @@ export default function About() {
 
       {/* Profile Section */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-screen-2xl mx-auto px-4">
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
             <div className="grid md:grid-cols-12 gap-0">
               <div className="md:col-span-5 relative h-[400px] md:h-auto">
@@ -79,7 +79,7 @@ export default function About() {
 
       {/* Mission & Vision */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-screen-2xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <motion.div 
               {...fadeIn}

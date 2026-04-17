@@ -43,7 +43,7 @@ export default function Gallery() {
       {/* Page Header */}
       <div className="bg-teal-700 text-white py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-screen-2xl mx-auto px-4 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Gallery</h1>
           <p className="text-teal-100 text-lg max-w-2xl mx-auto">
             A glimpse into our consultation clinic and associated hospital facilities.
@@ -52,7 +52,7 @@ export default function Gallery() {
       </div>
 
       {/* Gallery Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-screen-2xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {images.map((img, idx) => (
             <motion.div
