@@ -48,14 +48,14 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col font-sans transition-all duration-700 ease-in-out bg-white text-gray-800">
       <div className="fixed w-full z-50 top-0 left-0 flex flex-col transition-all duration-300">
         {/* Top Bar */}
-        <div className={`py-2 px-4 hidden md:block transition-colors duration-700 ${isScrolled ? 'bg-sky-700 text-white' : (isHome ? 'bg-sky-900/30 backdrop-blur-sm text-white' : 'bg-sky-600 text-white')}`}>
+        <div className={`py-2 px-4 hidden md:block transition-colors duration-700 ${isScrolled ? 'bg-green-700 text-white' : (isHome ? 'bg-green-900/40 backdrop-blur-sm text-white' : 'bg-green-600 text-white')}`}>
           <div className="max-w-screen-2xl mx-auto flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <span className="flex items-center"><Phone size={16} className="mr-2" /> +91 94141 58480</span>
               <span className="flex items-center"><Mail size={16} className="mr-2" /> info@drmayankameta.com</span>
             </div>
             <div className="flex items-center space-x-4">
-              <a href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-sky-200 transition-colors">
+              <a href="https://maps.app.goo.gl/RUgGqAZXVKrNsQJy7" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-green-200 transition-colors">
                 <MapPin size={16} className="mr-2" /> Udaipur, Rajasthan
               </a>
             </div>
